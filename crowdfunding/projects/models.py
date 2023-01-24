@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Avg, Count, Min, Sum
 
 User = get_user_model()
 
@@ -18,6 +19,14 @@ class Project(models.Model):
         related_name='owner_projects'
     )
     # owner = models.CharField(max_length=200)
+    liked_by = models.ManyToManyField(
+        User,
+        related_name='liked_projects'
+    )
+
+    @property
+    def total(self):
+        return self.pledges.aggregate(sum=models.Sum('amount'))['sum']
 
 
 class Pledge(models.Model):
