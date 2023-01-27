@@ -1,8 +1,11 @@
 venv/
 .venv/
+# Python temp files
 __pycache__/
+*.py[cod]
+*$py.class
+
 .DS_Store
 *.sqlite3
 *.vscode
 staticfiles
-crowdfunding/crowdfunding/__pycache__/settings.cpython-39.pyc
