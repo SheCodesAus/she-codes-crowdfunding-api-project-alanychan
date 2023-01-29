@@ -151,24 +151,25 @@ _Target audience: Parents/guardians of the children of our future, nature lovers
 
 ```shell
 curl --request POST \
-  --url http://127.0.0.1:8000/users/ \
+  --url http://localhost:8000/users/ \
   --header 'Content-Type: application/json' \
   --data '{
-	"username": "testuser",
-	"email": "not@myemail.com",
-	"password": "not-my-password"
+		"first_name": "Seb",
+		"last_name": "dog",
+		"username": "seb",
+		"email": "seb@cfd.co",
+		"password": "seb"
 }'
-```
 
 2. Sign in User
 
 ```shell
 curl --request POST \
-  --url http://127.0.0.1:8000/api-token-auth/ \
+  --url http://localhost:8000/api-token-auth/ \
   --header 'Content-Type: application/json' \
   --data '{
-	"username": "testuser",
-	"password": "not-my-password"
+	"username" : "seb",
+	"password" : "seb"
 }'
 ```
 
@@ -176,15 +177,15 @@ curl --request POST \
 
 ```shell
 curl --request POST \
-  --url http://127.0.0.1:8000/projects/ \
-  --header 'Authorization: Token 5b8c82ec35c8e8cb1fac24f8eb6d480a367f322a' \
+  --url http://localhost:8000/projects/ \
+  --header 'Authorization: Token 7377227d6a1efe6cbe1ef6c174401f995a73d10f' \
   --header 'Content-Type: application/json' \
   --data '{
-	"title": "Donate a cat",
-	"description": "Please help, we need a cat for she codes plus, our class lacks meows.",
-	"goal": 1,
-	"image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Dollar_bill_and_small_change.jpg",
-	"is_open": true,
-	"date_created": "2023-01-28T05:53:46.113Z"
+	
+	"title": "Project Penguins on holidays in Summer!!",
+	"description": "Funding for penguins Pierre & family to go on holidays in the tropics. To do so, they need a cold suit that will regulate their body temperature which will alltogether cost $10,000.",
+	"goal":10000,
+	"image": "https://www.pinguins.info/Biologie/keu04_humpi001a.jpg",
+	"is_open": true
 }'
 ```
