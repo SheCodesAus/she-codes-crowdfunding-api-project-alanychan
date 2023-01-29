@@ -16,6 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
+from .views import custom404, custom202
+
+handler404 = custom404
+handler202 = custom202
+
+admin.site.index_title = 'Crowdfunding Project Administration'
+admin.site.site_header = 'Crowdfunding Project Administration'
+admin.site.site_title = 'Crowdfunding Project.'
+admin.site.site_url = '/projects'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

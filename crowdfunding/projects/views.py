@@ -1,16 +1,19 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from django.http import Http404
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, permissions
-from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
-from django.http import Http404
-from rest_framework import status, generics
+from rest_framework import status, permissions, generics
+from .models import Project, Pledge, ProjectUpdates
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, ProjectUpdatesSerializer
 from .permissions import IsOwnerOrReadOnly
 
 # Create your views here.
+# class ProjectList(generics.ListCreateAPIView):
 class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    search_fields = ['title', 'description']
 
     def get(self, request):
         projects = Project.objects.all()
@@ -61,6 +64,11 @@ class ProjectDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+    def delete(self, request, pk, format=None):
+        project_instance = self.get_object(pk)
+        project_instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class PledgeList(generics.ListCreateAPIView):
     permission_classes = [
@@ -70,6 +78,25 @@ class PledgeList(generics.ListCreateAPIView):
 
     queryset = Pledge.objects.all()
     serializer_class = PledgeSerializer
+    filterset_fields = ['anonymous','project']
 
     def perform_create(self, serializer):
         serializer.save(supporter=self.request.user)
+
+
+class ProjectUpdatesList(generics.ListCreateAPIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+
+    queryset = ProjectUpdates.objects.all()
+    serializer_class = ProjectUpdatesSerializer
+    filterset_fields = ['project']
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def perform_update(self, serializer):
+        serializer.save()
+

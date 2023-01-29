@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Avg, Count, Min, Sum
+from django.utils import timezone
 
 User = get_user_model()
 
+now = timezone.now()
 # Create your models here.
 
 class Project(models.Model):
@@ -12,7 +14,7 @@ class Project(models.Model):
     goal = models.IntegerField()
     image = models.URLField()
     is_open = models.BooleanField()
-    date_created = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -41,6 +43,16 @@ class Pledge(models.Model):
     supporter = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='supporte_pledges'
+        related_name='support_pledges'
     )
-    # supporter = models.CharField(max_length=200)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+
+class ProjectUpdates(models.Model):
+    content = models.TextField()
+    project = models.ForeignKey(
+        'Project',
+        on_delete=models.CASCADE,
+        related_name='project_udpates'
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
