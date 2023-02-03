@@ -1,19 +1,14 @@
 from rest_framework import serializers
-from .models import Project, Pledge, ProjectUpdates
-from users.serializers import CustomUserSerializer
+from .models import Project, Pledge, ProjectUpdates, LikedBy
+# from users.models import CustomUser
+# from users.serializers import CustomUserSerializer
 
-
-class PledgeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Pledge
-        fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter', 'date_created']
-        read_only_fields = ['id', 'supporter']
 
 class ProjectSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
     title = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=None)
-    goal = serializers.IntegerField()
+    goal = serializers.DecimalField(max_digits=10, decimal_places=2)
     image = serializers.URLField()
     is_open = serializers.BooleanField()
     date_created = serializers.ReadOnlyField()
@@ -32,20 +27,29 @@ class ProjectSerializer(serializers.Serializer):
         instance.date_created = validated_data.get('date_created', instance.date_created)
         instance.owner = validated_data.get('owner', instance.owner)
         instance.save()
-
         return instance
 
+
+class PledgeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pledge
+        fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter', 'date_created']
+        read_only_fields = ['id', 'supporter']
 
 class ProjectUpdatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectUpdates
         fields = ['id', 'content', 'project', 'date_created']
-        read_only_fields = ['id']
 
+
+class LikedBySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LikedBy
+        fields = '__all__'
 
 class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
-    liked_by = CustomUserSerializer(many=True, read_only=True)
+    liked_by = LikedBySerializer(many=True, read_only=True)
     projectupdates = ProjectUpdatesSerializer(many=True, read_only=True)
 
 

@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, generics
-from .models import Project, Pledge, ProjectUpdates
-from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, ProjectUpdatesSerializer
+from .models import Project, Pledge, ProjectUpdates, LikedBy
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, ProjectUpdatesSerializer, LikedBySerializer
 from .permissions import IsOwnerOrReadOnly
 
 # Create your views here.
@@ -78,7 +78,7 @@ class PledgeList(generics.ListCreateAPIView):
 
     queryset = Pledge.objects.all()
     serializer_class = PledgeSerializer
-    filterset_fields = ['anonymous','project']
+    filterset_fields = ['supporter','project']
 
     def perform_create(self, serializer):
         serializer.save(supporter=self.request.user)
@@ -97,6 +97,28 @@ class ProjectUpdatesList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
+
+class ProjectUpdatesDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+    queryset = ProjectUpdates.objects.all()
+    serializer_class = ProjectUpdatesSerializer
+
     def perform_update(self, serializer):
         serializer.save()
 
+
+class LikedByList(generics.ListCreateAPIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+
+    queryset = LikedBy.objects.all()
+    serializer_class = LikedBySerializer
+    filterset_fields = ['liked_by','project']
+
+    def perform_create(self, serializer):
+        serializer.save(liked_by=self.request.user)

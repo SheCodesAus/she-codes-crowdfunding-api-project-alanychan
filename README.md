@@ -1,7 +1,8 @@
 # {{ my project title }}
-Let's get the Penguins on Summer holidays!!
+
 
 {{ a paragraph detailing the purpose and target audience }}
+Let's get the Penguins on Summer holidays!!
 "Funding for penguins Pierre & family to go on holidays in the tropics. To do so, they need a cold suit that will regulate their body temperature which will alltogether cost $10,000."
 
 Target audience: everyone really, all animals lovers, penguins lovers, summer holidays lovers.

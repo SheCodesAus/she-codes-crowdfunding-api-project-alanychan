@@ -5,3 +5,4 @@ from .import models
 admin.site.register(models.Project)
 admin.site.register(models.Pledge)
 admin.site.register(models.ProjectUpdates)
+admin.site.register(models.LikedBy)
