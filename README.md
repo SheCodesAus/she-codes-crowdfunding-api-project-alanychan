@@ -1,22 +1,28 @@
-# {{ my project title }}
+# {{ CrowdGift }}
 
 
 {{ a paragraph detailing the purpose and target audience }}
-Let's get the Penguins on Summer holidays!!
-"Funding for penguins Pierre & family to go on holidays in the tropics. To do so, they need a cold suit that will regulate their body temperature which will alltogether cost $10,000."
 
-Target audience: everyone really, all animals lovers, penguins lovers, summer holidays lovers.
+#### Idea 1 - Let's get the Penguins on a summer holiday!!!
+_"Funding for penguins Pierre & family to go on holidays in the tropics. They will need cold suitS to regulate their body temperature and have an amazing time holidaying in the Tropics!!! Let's get them what they need!!"_
+
+_Target audience: everyone really, all animals lovers, penguins lovers, summer holidays lovers._
+
+#### Idea 2 - A day in the forest for our children!
+_"Funding for the classroom's next school trip to the forest!!! A change to the daily environment of our children, especially after the lockdown due to covid, and connect them to nature. A day in the forest can have positive impact on the wellbeing, physical and mental health of everyone! It helps reduce stress and anxiety, provides the excitement of going on an adventure and takes away from the pollution of modern technology."_
+
+_Target audience: Parents/guardians of the children of our future, nature lovers, advocate for holistic education of children, etc._
+
+
 
 ## Features
-- refer to API specifications?
+- refer to API specifications.
 
 ### User Accounts
 
 - [X] Username
 - [X] Email Address
 - [X] Password
-- [X] First Name
-- [X] Last Name
 
 
 ### Project
@@ -80,16 +86,16 @@ Target audience: everyone really, all animals lovers, penguins lovers, summer ho
   - [X] Limit who can delete
 - Project Updates
   - [X] Limit who can create
-  - [ ] Limit who can retrieve
+  - [x] Limit who can retrieve
   - [X] Limit who can update
-  - [ ] Limit who can delete
+  - [x] Limit who can delete
 - Pledge
   - [X] Limit who can create
   - [ ] Limit who can retrieve
   - [X] Limit who can update
-  - [ ] Limit who can delete
+  - [x] Limit who can delete
 - User
-  - [ ] Limit who can retrieve
+  - [ ] Limit who can retrieve 
   - [X] Limit who can update
   - [X] Limit who can delete
 
@@ -123,16 +129,21 @@ Target audience: everyone really, all animals lovers, penguins lovers, summer ho
 
 ### External libraries used
 
-- [ ] django-filter
+- [x] django-filter
 
 
-## Part A Submission
+## Part A Submission 
 
-- [ ] A link to the deployed project.
-- [ ] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
-- [ ] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
-- [ ] A screenshot of Insomnia, demonstrating a token being returned.
-- [ ] Your refined API specification and Database Schema.
+- [x] A link to the deployed project. 
+        [DeployedProject](https://green-surf-5691.fly.dev/ "Deployed Project")
+
+- [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
+- [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+- [x] A screenshot of Insomnia, demonstrating a token being returned.
+        [Screenshots](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-alanychan/blob/main/AlanyChan-Django-Crowdfunding-API-Project.docx "Screenshots & API Specs.")
+        
+- [x] Your refined API specification and Database Schema.
+        [DatabaseSchema](https://dbdiagram.io/d/63dbc3e6296d97641d7e00ca "Database Schema")
 
 ### Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data).
 
