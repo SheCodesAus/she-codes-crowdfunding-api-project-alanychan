@@ -135,15 +135,15 @@ _Target audience: Parents/guardians of the children of our future, nature lovers
 ## Part A Submission 
 
 - [x] A link to the deployed project. 
-        [DeployedProject](https://green-surf-5691.fly.dev/ "Deployed Project")
+        [Deployed Project](https://green-surf-5691.fly.dev/ "Deployed Project.")
 
 - [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
 - [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
 - [x] A screenshot of Insomnia, demonstrating a token being returned.
-        [Screenshots](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-alanychan/blob/main/AlanyChan-Django-Crowdfunding-API-Project.docx "Screenshots & API Specs.")
+        [All screenshots & API Specs.](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-alanychan/blob/main/AlanyChan-Django-Crowdfunding-API-Project.docx "Screenshots & API Specs.")
         
 - [x] Your refined API specification and Database Schema.
-        [DatabaseSchema](https://dbdiagram.io/d/63dbc3e6296d97641d7e00ca "Database Schema")
+        [Database Schema](https://dbdiagram.io/d/63dbc3e6296d97641d7e00ca "Database Schema.")
 
 ### Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data).
 
