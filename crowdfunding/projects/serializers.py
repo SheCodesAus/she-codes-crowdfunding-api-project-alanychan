@@ -15,6 +15,9 @@ class ProjectSerializer(serializers.Serializer):
     owner = serializers.ReadOnlyField(source='owner_id')
     total = serializers.ReadOnlyField()
 
+
+    owner = serializers.SerializerMethodField()
+
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
 
@@ -29,12 +32,36 @@ class ProjectSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+    def get_owner(self, instance):
+        """
+            get the name of the owner of the project
+        """
+        return instance.owner.username
+
 
 class PledgeSerializer(serializers.ModelSerializer):
+
+    supporter = serializers.SerializerMethodField()
+
+    comment = serializers.CharField(required=False)
+
     class Meta:
         model = Pledge
         fields = ['id', 'amount', 'comment', 'anonymous', 'project', 'supporter', 'date_created']
         read_only_fields = ['id', 'supporter']
+
+    def get_supporter(self, instance):
+        """
+        if the instance (supporter) has anonymous = True:
+            replace True with "anonymous"
+        else
+            replace False with the username of the supporter
+        """
+        if instance.anonymous:
+            return "anonymous"
+        else:
+            return instance.supporter.username
+
 
 class ProjectUpdatesSerializer(serializers.ModelSerializer):
     class Meta:
